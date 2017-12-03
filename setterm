@@ -1,0 +1,6 @@
+!/bin/sh
+[ "$1" == "start" ] || exit 0 # only initialize everything when called as /etc/init.d/setterm start
+for term in /dev/tty[0-9]*; do # select all ttyNN, but skip ttyS*
+    setterm -blank 0 >$term <$term
+    setterm -powersave off >$term <$term
+done
